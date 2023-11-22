@@ -20,11 +20,15 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    [SerializeField]
+    private GameObject _bullet;
+
     // Start is called before the first frame update
     void Start()
     {
         _health = _maxHealth;
-       
+
+        StartCoroutine(TestHealtBar());
     }
 
     // Update is called once per frame
@@ -32,6 +36,32 @@ public class Ship : MonoBehaviour
     {
         MoveFoward();
         Rotate(30);
+    }
+
+    private void Shoot(Vector3 initialPosition,float force, Vector3 direction)
+    {
+        GameObject aux;
+
+        aux = GameObject.Instantiate(_bullet, initialPosition + transform.position, Quaternion.identity);
+
+        aux.GetComponent<Bullet>().InitiateBullet(direction, force);
+    }
+
+    private void ShootFoward()
+    {
+        Shoot((-transform.up * 0.8f), 5, -transform.up);
+    }
+
+    private void ShootSideways()
+    {
+
+        Shoot((-transform.right * 0.6f) + ( transform.up * 0.3f), 5, -transform.right);
+        Shoot((-transform.right * 0.6f)                         , 5, -transform.right);
+        Shoot((-transform.right * 0.6f) + (-transform.up * 0.3f), 5, -transform.right);
+
+        Shoot((transform.right * 0.6f)  + ( transform.up * 0.3f), 5, transform.right);
+        Shoot((transform.right * 0.6f)                          , 5, transform.right);
+        Shoot((transform.right * 0.6f)  + (-transform.up * 0.3f), 5, transform.right);
     }
 
     private void MoveFoward()
@@ -88,6 +118,10 @@ public class Ship : MonoBehaviour
         {
             _spriteCurrent.sprite = _spritesDamage[2];
         }
+        else
+        {
+            _spriteCurrent.sprite = _spritesDamage[3];
+        }
     }
 
     public void GetDamage(float damage)
@@ -107,9 +141,44 @@ public class Ship : MonoBehaviour
     {
         while (true)
         {
+
             yield return new WaitForSeconds(1f);
 
-            GetDamage(10f);
+            GetDamage(35f);
+            ShootSideways();
+            ShootFoward();
+
+            yield return new WaitForSeconds(1f);
+
+            GetDamage(33f);
+            ShootSideways();
+            ShootFoward();
+
+            yield return new WaitForSeconds(1f);
+
+            GetDamage(32f);
+            ShootSideways();
+            ShootFoward();
+
+            yield return new WaitForSeconds(1f);
+
+            GetHeal(33f);
+            ShootSideways();
+            ShootFoward();
+
+            yield return new WaitForSeconds(1f);
+
+            GetHeal(33f);
+            ShootSideways();
+            ShootFoward();
+
+            yield return new WaitForSeconds(1f);
+
+            GetHeal(34f);
+            ShootSideways();
+            ShootFoward();
+           
+
         }
     }
 
