@@ -17,17 +17,31 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteCurrent;
 
+    [SerializeField]
+    private float _speed;
+
     // Start is called before the first frame update
     void Start()
     {
         _health = _maxHealth;
-        StartCoroutine(TestHealtBar());
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        MoveFoward();
+        Rotate(30);
+    }
+
+    private void MoveFoward()
+    {
+        transform.position += -transform.up * Time.deltaTime * _speed;
+    }
+
+    private void Rotate(float rotation)
+    {
+        transform.Rotate(new Vector3(0,0, rotation) * Time.deltaTime);
     }
 
     private void ChangeHealth(float change)
@@ -84,9 +98,9 @@ public class Ship : MonoBehaviour
 
         ChangeHealthBar();
 
-        ChangeSprite();
-
         TestToDeath();
+
+        ChangeSprite();
     }
 
     private IEnumerator TestHealtBar()
@@ -97,6 +111,18 @@ public class Ship : MonoBehaviour
 
             GetDamage(10f);
         }
+    }
+
+    public void GetHeal(float heal)
+    {
+        ChangeHealth(heal);
+
+        TestHealth();
+
+        ChangeHealthBar();
+
+        ChangeSprite();
+
     }
 
 }
