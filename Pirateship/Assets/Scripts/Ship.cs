@@ -23,6 +23,9 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private GameObject _bullet;
 
+    [SerializeField]
+    private Animator _animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,11 +98,21 @@ public class Ship : MonoBehaviour
     {
         if(_health <= 0)
         {
-            Debug.Log("die");
+            StartCoroutine(Die());
         }
     }
 
-    private void ChangeHealthBar()
+    private IEnumerator Die()
+    {
+        //start explosion animation
+        _animator.SetTrigger("Explode");
+
+        yield return new WaitForSeconds(2f);
+
+        Debug.Log("Destroy object");
+    }
+
+        private void ChangeHealthBar()
     {
         _healthBar.fillAmount = _health / _maxHealth;
     }
