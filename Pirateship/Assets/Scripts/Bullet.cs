@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     private Vector3 _direction;
     private float _velocity;
 
+    private float _damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +32,15 @@ public class Bullet : MonoBehaviour
         _velocity = velocity;
     }
 
-    public void InitiateBullet(Vector3 direction, float velocity)
+    private void SetDamage(float damage)
+    {
+        _damage = damage;
+    }
+
+    public void InitiateBullet(Vector3 direction, float velocity, float damage)
     {
         SetDirection(direction);
         SetVelocity(velocity);
+        SetDamage(damage);
     }
 }

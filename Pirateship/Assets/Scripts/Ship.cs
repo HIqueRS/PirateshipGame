@@ -8,6 +8,18 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private float _maxHealth;
     private float _health;
+    
+    [SerializeField]
+    private float _damage;
+    
+    [SerializeField]
+    private float _fireRate;
+
+    [SerializeField]
+    private float _fireSpeed;
+
+    [SerializeField]
+    private float _speed;
 
     [SerializeField]
     private Image _healthBar;
@@ -17,8 +29,6 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteCurrent;
 
-    [SerializeField]
-    private float _speed;
 
     [SerializeField]
     private GameObject _bullet;
@@ -26,53 +36,74 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
+
+    private float _fowardCooldown;
+    private float _sideCooldown;
+
     // Start is called before the first frame update
     void Start()
     {
         _health = _maxHealth;
+        _fowardCooldown = 0;
+        _sideCooldown = 0;
 
-        StartCoroutine(TestHealtBar());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveFoward();
-        Rotate(30);
+        
     }
 
-    private void Shoot(Vector3 initialPosition,float force, Vector3 direction)
+    protected void PassCooldown()
+    {
+        _fowardCooldown += Time.deltaTime;
+        _sideCooldown += Time.deltaTime;    
+    }
+
+    private void Shoot(Vector3 initialPosition, Vector3 direction)//add damage too
     {
         GameObject aux;
 
         aux = GameObject.Instantiate(_bullet, initialPosition + transform.position, Quaternion.identity);
 
-        aux.GetComponent<Bullet>().InitiateBullet(direction, force);
+        aux.GetComponent<Bullet>().InitiateBullet(direction, _fireSpeed + _speed, _damage);
     }
 
-    private void ShootFoward()
+    protected void ShootFoward()
     {
-        Shoot((-transform.up * 0.8f), 5, -transform.up);
+        if(_fowardCooldown > 1/_fireRate)
+        {
+            Shoot((-transform.up * 0.8f), -transform.up);
+            _fowardCooldown = 0;
+        }
+        
     }
 
-    private void ShootSideways()
+    protected void ShootSideways()
     {
+        if(_sideCooldown > 1/_fireRate)
+        {
+            Shoot((-transform.right * 0.6f) + ( transform.up * 0.3f), -transform.right);
+            Shoot((-transform.right * 0.6f),                          -transform.right);
+            Shoot((-transform.right * 0.6f) + (-transform.up * 0.3f), -transform.right);
 
-        Shoot((-transform.right * 0.6f) + ( transform.up * 0.3f), 5, -transform.right);
-        Shoot((-transform.right * 0.6f)                         , 5, -transform.right);
-        Shoot((-transform.right * 0.6f) + (-transform.up * 0.3f), 5, -transform.right);
+            Shoot((transform.right * 0.6f) +  ( transform.up * 0.3f),  transform.right);
+            Shoot((transform.right * 0.6f),                            transform.right);
+            Shoot((transform.right * 0.6f) +  (-transform.up * 0.3f),  transform.right);
 
-        Shoot((transform.right * 0.6f)  + ( transform.up * 0.3f), 5, transform.right);
-        Shoot((transform.right * 0.6f)                          , 5, transform.right);
-        Shoot((transform.right * 0.6f)  + (-transform.up * 0.3f), 5, transform.right);
+            _sideCooldown = 0; 
+        }
+        
     }
 
-    private void MoveFoward()
+    protected void MoveFoward()
     {
         transform.position += -transform.up * Time.deltaTime * _speed;
     }
 
-    private void Rotate(float rotation)
+    protected void Rotate(float rotation)
     {
         transform.Rotate(new Vector3(0,0, rotation) * Time.deltaTime);
     }
@@ -112,7 +143,7 @@ public class Ship : MonoBehaviour
         Debug.Log("Destroy object");
     }
 
-        private void ChangeHealthBar()
+    private void ChangeHealthBar()
     {
         _healthBar.fillAmount = _health / _maxHealth;
     }
@@ -205,6 +236,26 @@ public class Ship : MonoBehaviour
 
         ChangeSprite();
 
+    }
+
+    public void AddDamage(float damage)
+    {
+        _damage += damage;
+    }
+
+    public void AddFireRate(float firerate)
+    {
+        _fireRate += firerate;
+    }
+
+    public void AddFireSpeed(float speed)
+    {
+        _fireSpeed += speed;
+    }
+
+    public void AddSpeed(float speed)
+    {
+        _speed += speed;
     }
 
 }
