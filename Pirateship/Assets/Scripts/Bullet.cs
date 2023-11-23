@@ -43,4 +43,12 @@ public class Bullet : MonoBehaviour
         SetVelocity(velocity);
         SetDamage(damage);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision != null)
+        {
+            collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
+        }
+    }
 }

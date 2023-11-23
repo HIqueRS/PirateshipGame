@@ -8,16 +8,17 @@ public class PlayerShip : Ship
     private InputSchema _input;
 
     // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
-        Inputs();
-        PassCooldown();
+        if(_isDead == false)
+        {
+            Inputs();
+            PassCooldown();
+        }
+       
     }
 
     private void Inputs()
@@ -29,12 +30,12 @@ public class PlayerShip : Ship
 
         if(_input.LeftPressed())
         {
-            Rotate(30);
+            Rotate(_anglePerSecond);//tem q ser variavel
         }
 
         if (_input.RightPressed())
         {
-            Rotate(-30);
+            Rotate(-_anglePerSecond);
         }
 
         if(_input.FireFowardPressed())

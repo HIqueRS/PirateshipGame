@@ -88,6 +88,7 @@ MonoBehaviour:
   _fireRate: 1
   _fireSpeed: 5
   _speed: 1
+  _anglePerSecond: 40
   _healthBar: {fileID: 6384480409324593065}
   _spritesDamage:
   - {fileID: 21300000, guid: 2a26d751b58bb8f4b8766e33ac0ace5a, type: 3}

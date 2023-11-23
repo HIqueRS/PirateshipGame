@@ -10,7 +10,7 @@ public class Ship : MonoBehaviour
     private float _health;
     
     [SerializeField]
-    private float _damage;
+    protected float _damage;
     
     [SerializeField]
     private float _fireRate;
@@ -22,12 +22,15 @@ public class Ship : MonoBehaviour
     private float _speed;
 
     [SerializeField]
+    protected float _anglePerSecond;
+
+    [SerializeField]
     private Image _healthBar;
 
     [SerializeField]
-    private Sprite[] _spritesDamage;
+    protected Sprite[] _spritesDamage;
     [SerializeField]
-    private SpriteRenderer _spriteCurrent;
+    protected SpriteRenderer _spriteCurrent;
 
 
     [SerializeField]
@@ -40,12 +43,15 @@ public class Ship : MonoBehaviour
     private float _fowardCooldown;
     private float _sideCooldown;
 
+    protected bool _isDead;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         _health = _maxHealth;
         _fowardCooldown = 0;
         _sideCooldown = 0;
+        _isDead = false;
 
         
     }
@@ -133,14 +139,16 @@ public class Ship : MonoBehaviour
         }
     }
 
-    private IEnumerator Die()
+    protected IEnumerator Die()
     {
         //start explosion animation
+        _isDead = true;
+
         _animator.SetTrigger("Explode");
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("Destroy object");
+        Destroy(this.transform.parent.gameObject);
     }
 
     private void ChangeHealthBar()
