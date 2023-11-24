@@ -72,7 +72,14 @@ public class Ship : MonoBehaviour
     {
         GameObject aux;
 
-        aux = GameObject.Instantiate(_bullet, initialPosition + transform.position, Quaternion.identity);
+        Vector3 position;
+
+        position = initialPosition + transform.position;
+
+        position = new Vector3(position.x, position.y, -1);
+
+
+        aux = GameObject.Instantiate(_bullet, position, Quaternion.identity);
 
         aux.GetComponent<Bullet>().InitiateBullet(direction, _fireSpeed + _speed, _damage);
     }
@@ -158,7 +165,10 @@ public class Ship : MonoBehaviour
 
     private void ChangeHealthBar()
     {
-        _healthBar.fillAmount = _health / _maxHealth;
+        if(_isDead == false)
+        {
+            _healthBar.fillAmount = _health / _maxHealth;
+        }
     }
 
     private void ChangeSprite()
