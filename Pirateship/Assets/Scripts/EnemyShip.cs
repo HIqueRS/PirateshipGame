@@ -6,7 +6,7 @@ public class EnemyShip : Ship
 {
 
     [SerializeField]
-    public GameObject _target;
+    protected Transform _target;
 
     private Vector2 _targetDir;
 
@@ -23,12 +23,22 @@ public class EnemyShip : Ship
         
     }
 
+    public void Scream()
+    {
+        Debug.Log("AAAAA");
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
+
 
     public void RotateTowardsTarget()
     {
         if (_target != null) 
         {
-            _targetDir = _target.transform.position - transform.position;
+            _targetDir = _target.position - transform.position;
 
             _targetDir.Normalize();
 
