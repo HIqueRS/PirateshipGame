@@ -30,7 +30,7 @@ public class PlayerShip : Ship
 
         if(_input.LeftPressed())
         {
-            Rotate(_anglePerSecond);//tem q ser variavel
+            Rotate(_anglePerSecond);
         }
 
         if (_input.RightPressed())

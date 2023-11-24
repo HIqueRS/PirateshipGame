@@ -135,7 +135,10 @@ public class Ship : MonoBehaviour
     {
         if(_health <= 0)
         {
-            StartCoroutine(Die());
+            if(!_isDead)
+            {
+                StartCoroutine(Die());
+            }
         }
     }
 
@@ -145,6 +148,8 @@ public class Ship : MonoBehaviour
         _isDead = true;
 
         _animator.SetTrigger("Explode");
+
+        Destroy(this.transform.parent.GetChild(1).gameObject);
 
         yield return new WaitForSeconds(2f);
 
@@ -187,51 +192,6 @@ public class Ship : MonoBehaviour
         TestToDeath();
 
         ChangeSprite();
-    }
-
-    private IEnumerator TestHealtBar()
-    {
-        while (true)
-        {
-
-            yield return new WaitForSeconds(1f);
-
-            GetDamage(35f);
-            ShootSideways();
-            ShootFoward();
-
-            yield return new WaitForSeconds(1f);
-
-            GetDamage(33f);
-            ShootSideways();
-            ShootFoward();
-
-            yield return new WaitForSeconds(1f);
-
-            GetDamage(32f);
-            ShootSideways();
-            ShootFoward();
-
-            yield return new WaitForSeconds(1f);
-
-            GetHeal(33f);
-            ShootSideways();
-            ShootFoward();
-
-            yield return new WaitForSeconds(1f);
-
-            GetHeal(33f);
-            ShootSideways();
-            ShootFoward();
-
-            yield return new WaitForSeconds(1f);
-
-            GetHeal(34f);
-            ShootSideways();
-            ShootFoward();
-           
-
-        }
     }
 
     public void GetHeal(float heal)

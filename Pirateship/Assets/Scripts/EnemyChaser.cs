@@ -27,17 +27,19 @@ public class EnemyChaser : EnemyShip
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision != null)
+        if (_isDead == false)
         {
-            if(collision.gameObject.GetComponent<Ship>() != null)
+            if (collision != null)
             {
-                collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
+                if(collision.gameObject.GetComponent<Ship>() != null)
+                {
+                    collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
 
-                ChangeSprite();
+                    ChangeSprite();
 
-                StartCoroutine(Die());
+                    StartCoroutine(Die());
+                }   
             }
-            
         }
     }
 }

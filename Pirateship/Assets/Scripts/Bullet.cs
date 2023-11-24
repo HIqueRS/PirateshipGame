@@ -49,6 +49,8 @@ public class Bullet : MonoBehaviour
         if(collision != null)
         {
             collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
+
+            Destroy(this.gameObject);
         }
     }
 }
