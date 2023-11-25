@@ -311,6 +311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _distance: {x: 0, y: 1, z: 0}
   _target: {fileID: 3173908881887443385}
+  _offset: 0
+  _speed: 3
 --- !u!223 &3247693615110408911
 Canvas:
   m_ObjectHideFlags: 0

@@ -78,7 +78,7 @@ public class Bullet : MonoBehaviour
         {
             if(collision != null)
             {
-                collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
+                collision.gameObject.GetComponent<Ship>()?.GetDamage(_damage);
 
                 _isMoving = false;
                 //play animation

@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Spawn : MonoBehaviour
 {
@@ -17,11 +20,18 @@ public class Spawn : MonoBehaviour
     private float _radiusToSpawn;
     
     private Vector3 _enemyPosition;
+
+    [SerializeField]
+    private Camera _camera;
+
+    public static event Action<Transform> SpawnPlayer;
+    
     // Start is called before the first frame update
     void Start()
     {
-        InitializePlayer();
-       
+        InitializePlayer();//evento de começou o jogo quando isso terminar
+
+
         _timePassed = 0;
 
         TestAndSpawn();
@@ -42,7 +52,10 @@ public class Spawn : MonoBehaviour
         _playerShip = GameObject.Instantiate(_playerShip,transform.position,Quaternion.identity);
 
         _playerShip = _playerShip.transform.GetChild(0).gameObject;
+
+        SpawnPlayer?.Invoke(_playerShip.transform);
     }
+
 
     private void SpawningEnemies()
     {
@@ -67,7 +80,7 @@ public class Spawn : MonoBehaviour
             _enemyPosition = RandPosition();
         }
 
-        r2 = Random.Range(0, _enemies.Length);
+        r2 = UnityEngine.Random.Range(0, _enemies.Length);
 
         SpawnEnemy(r2, _enemyPosition);
     }
@@ -85,7 +98,7 @@ public class Spawn : MonoBehaviour
     {
         Vector3 pos;
 
-        pos = Random.insideUnitCircle.normalized * _radiusToSpawn;
+        pos = UnityEngine.Random.insideUnitCircle.normalized * _radiusToSpawn;
 
         pos += _playerShip.transform.position;
 
