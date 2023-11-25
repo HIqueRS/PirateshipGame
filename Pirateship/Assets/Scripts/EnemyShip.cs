@@ -54,4 +54,30 @@ public class EnemyShip : Ship
             }
         }
     }
+
+    protected void ChangeSprite()
+    {
+        _spriteCurrent.sprite = _spritesDamage[0];
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (_isDead == false)
+        {
+            if (collision != null)
+            {
+                if (collision.gameObject.GetComponent<Ship>() != null)
+                {
+                    collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
+
+                }
+                else if(collision.gameObject.CompareTag("Isle"))
+                {
+                    ChangeSprite();
+
+                    StartCoroutine(Die());
+                }
+            }
+        }
+    }
 }

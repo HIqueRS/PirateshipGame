@@ -20,25 +20,26 @@ public class EnemyChaser : EnemyShip
         }
     }
 
-    private void ChangeSprite()
-    {
-        _spriteCurrent.sprite = _spritesDamage[0];
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (_isDead == false)
         {
             if (collision != null)
             {
-                if(collision.gameObject.GetComponent<Ship>() != null)
+                if (collision.gameObject.GetComponent<Ship>() != null)
                 {
                     collision.gameObject.GetComponent<Ship>().GetDamage(_damage);
 
                     ChangeSprite();
 
                     StartCoroutine(Die());
-                }   
+                }
+                else if (collision.gameObject.CompareTag("Isle"))
+                {
+                    ChangeSprite();
+
+                    StartCoroutine(Die());
+                }
             }
         }
     }
