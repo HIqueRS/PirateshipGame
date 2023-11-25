@@ -49,4 +49,21 @@ public class PlayerShip : Ship
         }
     }
 
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (_isDead == false)
+        {
+            if (collision != null)
+            {
+                
+                if (collision.gameObject.CompareTag("Isle"))
+                {
+
+                    GetDamage(30);
+                    
+                }
+            }
+        }
+    }
+
 }
