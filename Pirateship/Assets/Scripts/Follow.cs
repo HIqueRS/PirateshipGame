@@ -19,6 +19,10 @@ public class Follow : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    private float _currentDistance;
+
+    private Vector3 _targetPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +34,23 @@ public class Follow : MonoBehaviour
     {
         if (_target != null)
         {
-            if(Vector2.Distance(_target.position, transform.position) > _offset)
+            _targetPosition = _target.position + _distance;
+
+            _currentDistance = Vector2.Distance(_targetPosition, transform.position);
+            if (_currentDistance > _offset)
             {
-                _direction = _target.position + _distance;
-                _direction = _direction - transform.position;
+                
+                
+                _direction = _targetPosition - transform.position;
                 _direction.Normalize();
 
-                transform.position += _speed * Time.deltaTime * _direction;
+                if(_currentDistance > 0.1)
+                {
+                    transform.position += _speed * Time.deltaTime * _direction;
+                }
+                
+
+                
             }
         }
     }

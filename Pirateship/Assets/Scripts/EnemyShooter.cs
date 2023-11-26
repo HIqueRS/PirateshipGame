@@ -9,22 +9,28 @@ public class EnemyShooter : EnemyShip
     // Update is called once per frame
     void Update()
     {
-        if (_isDead == false)
-        {
-            PassCooldown();
 
-            RotateTowardsTarget();
-            if(_target != null)
+        if (_stop == false)
+        {
+            if (_isDead == false)
             {
-                if(Vector2.Distance(transform.position,_target.transform.position) < 5)
+                PassCooldown();
+
+                RotateTowardsTarget();
+                if(_target != null)
                 {
-                    ShootFoward();
-                }
-                else
-                {
-                    MoveFoward();
+                    if(Vector2.Distance(transform.position,_target.transform.position) < 5)
+                    {
+                        ShootFoward();
+                    }
+                    else
+                    {
+                        MoveFoward();
+                    }
                 }
             }
+
         }
+
     }
 }

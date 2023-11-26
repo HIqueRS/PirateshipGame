@@ -10,12 +10,16 @@ public class EnemyChaser : EnemyShip
     // Update is called once per frame
     void Update()
     {
-        if (_isDead == false)
+        if (_stop == false)
         {
-            if (_target != null)
+
+            if (_isDead == false)
             {
-                RotateTowardsTarget();
-                MoveFoward();
+                if (_target != null)
+                {
+                    RotateTowardsTarget();
+                    MoveFoward();
+                }
             }
         }
     }

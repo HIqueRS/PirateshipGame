@@ -25,7 +25,25 @@ public class Spawn : MonoBehaviour
     private Camera _camera;
 
     public static event Action<Transform> SpawnPlayer;
-    
+
+    protected bool _stop;
+
+    private void OnEnable()
+    {
+        GameManager.GameEnds += Stop;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameEnds -= Stop;
+
+    }
+
+    private void Stop()
+    {
+        _stop = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +61,10 @@ public class Spawn : MonoBehaviour
     {
         if( _playerShip != null )
         {
-            SpawningEnemies();
+            if(_stop == false)
+            {
+                SpawningEnemies();
+            }
         }
     }
 

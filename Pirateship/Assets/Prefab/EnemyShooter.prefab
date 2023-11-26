@@ -103,6 +103,7 @@ MonoBehaviour:
   _bullet: {fileID: 7214903022793650419, guid: db6043c71b2b3934a81a9e19deb7b0b9, type: 3}
   _animator: {fileID: 8682550147775888351}
   _target: {fileID: 0}
+  _points: 1
 --- !u!114 &4828522548997710534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4280901062907258654, guid: b66b6708ed0c502468df68f55481952d, type: 3}

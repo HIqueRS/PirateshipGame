@@ -45,6 +45,24 @@ public class Ship : MonoBehaviour
 
     protected bool _isDead;
 
+    protected bool _stop;
+
+    private void OnEnable()
+    {
+        GameManager.GameEnds += Stop;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameEnds -= Stop;
+        
+    }
+
+    private void Stop()
+    {
+        _stop = true;
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -52,7 +70,7 @@ public class Ship : MonoBehaviour
         _fowardCooldown = 0;
         _sideCooldown = 0;
         _isDead = false;
-
+        _stop = false;
         
     }
 
@@ -151,7 +169,8 @@ public class Ship : MonoBehaviour
 
     protected IEnumerator Die()
     {
-        //start explosion animation
+        CallDieEvent();
+
         _isDead = true;
 
         _animator.SetTrigger("Explode");
@@ -160,7 +179,14 @@ public class Ship : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        
+
         Destroy(this.transform.parent.gameObject);
+    }
+
+    protected virtual void CallDieEvent()
+    {
+        //implementation on enemyship and playership
     }
 
     private void ChangeHealthBar()

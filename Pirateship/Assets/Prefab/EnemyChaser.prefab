@@ -98,6 +98,7 @@ MonoBehaviour:
   _bullet: {fileID: 7214903022793650419, guid: db6043c71b2b3934a81a9e19deb7b0b9, type: 3}
   _animator: {fileID: 5160100589404978401}
   _target: {fileID: 0}
+  _points: 1
 --- !u!212 &4365613539397119754 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8871401209492516332, guid: b66b6708ed0c502468df68f55481952d, type: 3}

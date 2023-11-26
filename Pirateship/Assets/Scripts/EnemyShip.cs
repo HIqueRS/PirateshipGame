@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyShip : Ship
 {
@@ -12,20 +13,20 @@ public class EnemyShip : Ship
 
     private float _angleToTarget;
 
+    public static event Action<int> EnemyDie;
+
+    [SerializeField]
+    private int _points;
+
     //drop depois kk
 
     // Start is called before the first frame update
-    
+
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void Scream()
-    {
-        Debug.Log("AAAAA");
     }
 
     public void SetTarget(Transform target)
@@ -53,6 +54,11 @@ public class EnemyShip : Ship
                 Rotate(-_anglePerSecond);
             }
         }
+    }
+
+    protected override void CallDieEvent()
+    {
+        EnemyDie?.Invoke(_points);
     }
 
     protected void ChangeSprite()

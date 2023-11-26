@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerShip : Ship
 {
     [SerializeField]
     private InputSchema _input;
 
+    public static event Action PlayerDie;
+
+
+
     // Start is called before the first frame update
-   
+
 
     // Update is called once per frame
     void Update()
     {
-        if(_isDead == false)
+        if(_stop == false)
         {
-            Inputs();
-            PassCooldown();
+
+            if(_isDead == false)
+            {
+                Inputs();
+                PassCooldown();
+            }
         }
-       
     }
+       
+
 
     private void Inputs()
     {
@@ -47,6 +57,11 @@ public class PlayerShip : Ship
         {
             ShootSideways();
         }
+    }
+
+    protected override void CallDieEvent()
+    {
+        PlayerDie?.Invoke();
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
