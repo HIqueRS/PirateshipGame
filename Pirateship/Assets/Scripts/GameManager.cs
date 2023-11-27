@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    [SerializeField]
+   
     private float _time;
     private float _currentTime;
+
+   
+    public GameConfig _config;
 
     private void OnEnable()
     {
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
     {
         _points = 0;
         _hasEnded = false;
+
+        _time = _config._timeOfGame;
     }
 
     // Update is called once per frame

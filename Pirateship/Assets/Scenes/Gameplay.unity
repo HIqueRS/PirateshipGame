@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 62885782}
+  - component: {fileID: 62885784}
   - component: {fileID: 62885783}
   - component: {fileID: 62885781}
   - component: {fileID: 62885780}
@@ -240,6 +241,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endPanel: {fileID: 774587691}
   _textPoints: {fileID: 2110580096}
+--- !u!114 &62885784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62885778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b73794bb75c62e4aab91973d550a81b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &325367199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117902,6 +117915,7 @@ MonoBehaviour:
   _secToSpawn: 5
   _radiusToSpawn: 11
   _camera: {fileID: 519420031}
+  _config: {fileID: 11400000, guid: 13dd7b5b5872afe468a0f512b9ab96ac, type: 2}
 --- !u!4 &888701884
 Transform:
   m_ObjectHideFlags: 0
@@ -117931,6 +117945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: 0
   _time: 60
+  _config: {fileID: 11400000, guid: 13dd7b5b5872afe468a0f512b9ab96ac, type: 2}
 --- !u!1 &1491721975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3386696011200381543, guid: 3bf6eb2e78d00cf48813bc242cc4d7e3, type: 3}
@@ -118218,14 +118233,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 62885783}
-        m_TargetAssemblyTypeName: EndScreen, Assembly-CSharp
-        m_MethodName: RetryButton
-        m_Mode: 1
+      - m_Target: {fileID: 62885784}
+        m_TargetAssemblyTypeName: ChangeSceneScript, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -118480,7 +118495,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1956721953}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 62885784}
+        m_TargetAssemblyTypeName: ChangeSceneScript, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1956721953
 MonoBehaviour:
   m_ObjectHideFlags: 0

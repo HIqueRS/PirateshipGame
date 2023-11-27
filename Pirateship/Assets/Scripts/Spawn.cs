@@ -12,7 +12,7 @@ public class Spawn : MonoBehaviour
     [SerializeField]
     private GameObject[] _enemies;
 
-    [SerializeField]
+    
     private float _secToSpawn;
     private float _timePassed;
 
@@ -27,6 +27,8 @@ public class Spawn : MonoBehaviour
     public static event Action<Transform> SpawnPlayer;
 
     protected bool _stop;
+
+    public GameConfig _config;
 
     private void OnEnable()
     {
@@ -51,6 +53,8 @@ public class Spawn : MonoBehaviour
 
 
         _timePassed = 0;
+
+        _secToSpawn = _config._secondsToSpawn;
 
         TestAndSpawn();
 
