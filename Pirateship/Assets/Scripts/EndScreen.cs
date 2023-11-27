@@ -34,9 +34,4 @@ public class EndScreen : MonoBehaviour
 
         _textPoints.text = string.Concat("score: ",_endPoints);
     }
-
-    public void RetryButton()
-    {
-        SceneManager.LoadScene(0);
-    }
 }
