@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 3641928532659233537, guid: b66b6708ed0c502468df68f55481952d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552126741411183312, guid: b66b6708ed0c502468df68f55481952d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8634297017314466550, guid: b66b6708ed0c502468df68f55481952d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -98,6 +106,7 @@ MonoBehaviour:
   _spriteCurrent: {fileID: 1796768761753359707}
   _bullet: {fileID: 7214903022793650419, guid: db6043c71b2b3934a81a9e19deb7b0b9, type: 3}
   _animator: {fileID: 7198720246959638192}
+  _drops: []
   _input: {fileID: 11400000, guid: 94fff3d177fcc0c4bbf2a7633ab9da2a, type: 2}
 --- !u!114 &6384480409324593065 stripped
 MonoBehaviour:

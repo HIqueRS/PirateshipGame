@@ -47,6 +47,9 @@ public class Ship : MonoBehaviour
 
     protected bool _stop;
 
+    [SerializeField]
+    private GameObject[] _drops;
+
     private void OnEnable()
     {
         GameManager.GameEnds += Stop;
@@ -129,6 +132,20 @@ public class Ship : MonoBehaviour
         
     }
 
+    private void Drop()
+    {
+        if(GameManager.Instance._config._hasDrop)
+        {
+            if (_drops.Length > 0)
+            {
+                int i;
+                i = Random.Range(0, _drops.Length);
+
+                GameObject.Instantiate(_drops[i], transform.position, Quaternion.identity);
+            }
+        }
+    }
+
     protected void MoveFoward()
     {
         transform.position += -transform.up * Time.deltaTime * _speed;
@@ -179,7 +196,7 @@ public class Ship : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        
+        Drop();
 
         Destroy(this.transform.parent.gameObject);
     }

@@ -24,6 +24,9 @@ public class OptionsScreen : MonoBehaviour
     private int _minutes;
     private int _seconds;
 
+    [SerializeField]
+    private Toggle _toggle;
+
     public void WhenGameSlideChange()
     {
         _gameConfig._timeOfGame =  _gameTimeSlider.value;
@@ -39,6 +42,9 @@ public class OptionsScreen : MonoBehaviour
     
     void Start()
     {
+
+         _toggle.isOn = _gameConfig._hasDrop;
+
         _gameTimeSlider.value = _gameConfig._timeOfGame;
         FormatFloatToMin();
         _gameTimeText.text = string.Concat(_minutes.ToString("00"), ":", _seconds.ToString("00"), "min");
@@ -53,5 +59,9 @@ public class OptionsScreen : MonoBehaviour
         _seconds = (int)_gameConfig._timeOfGame % 60;
     }
 
+    public void HasDrop()
+    {
+        _gameConfig._hasDrop = _toggle.isOn;
+    }
     
 }

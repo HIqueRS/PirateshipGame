@@ -18,7 +18,7 @@ public class EnemyShip : Ship
     [SerializeField]
     private int _points;
 
-    //drop depois kk
+    
 
     // Start is called before the first frame update
 

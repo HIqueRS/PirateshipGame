@@ -7,4 +7,5 @@ public class GameConfig : ScriptableObject
 {
     public float _timeOfGame;
     public float _secondsToSpawn;
+    public bool _hasDrop;
 }

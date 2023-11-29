@@ -97,6 +97,10 @@ MonoBehaviour:
   _spriteCurrent: {fileID: 4365613539397119754}
   _bullet: {fileID: 7214903022793650419, guid: db6043c71b2b3934a81a9e19deb7b0b9, type: 3}
   _animator: {fileID: 5160100589404978401}
+  _drops:
+  - {fileID: 4751226828818463972, guid: a63d13fdc2cf3ea44bb7d820f6dc7de7, type: 3}
+  - {fileID: 5241402455727543633, guid: 845f8ff74c7520742ad5d374bf23898c, type: 3}
+  - {fileID: 2174194527870895263, guid: 4f466410c98ac6d428047c4711d33b59, type: 3}
   _target: {fileID: 0}
   _points: 1
 --- !u!212 &4365613539397119754 stripped
