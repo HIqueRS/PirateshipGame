@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     private Vector2 _initialPosition;
 
-    private float _range; //maybe change to the player control this variable
+    private float _range; 
 
     private bool _isMoving;
 
@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
                 collision.gameObject.GetComponent<Ship>()?.GetDamage(_damage);
 
                 _isMoving = false;
-                //play animation
+                
                 _anim.SetTrigger("Explode");
 
                

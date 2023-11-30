@@ -49,7 +49,7 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializePlayer();//evento de começou o jogo quando isso terminar
+        InitializePlayer();
 
 
         _timePassed = 0;
@@ -84,7 +84,7 @@ public class Spawn : MonoBehaviour
 
     private void SpawningEnemies()
     {
-        _timePassed += Time.deltaTime;//tirar a passagem de tempo dessa função?
+        _timePassed += Time.deltaTime;
 
         if( _timePassed > _secToSpawn )
         {

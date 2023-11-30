@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class EnemyChaser : EnemyShip
 {
-    // Start is called before the first frame update
-    
-
-    // Update is called once per frame
+   
     void Update()
     {
         if (_stop == false)
